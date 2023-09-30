@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Caption Results</title>
+   <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+   <h1>Caption Results</h1>
+   <p>Closest Taylor Swift Lyric Caption: {{ closest_lyric }}</p>
+   <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded Image">
+</body>
+</html>
