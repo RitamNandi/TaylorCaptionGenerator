@@ -1,1 +1,2 @@
-# taylor-caption-generator
+# Taylor Caption Generator
+
