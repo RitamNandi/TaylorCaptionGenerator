@@ -21,7 +21,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
 
-lyrics_df = pd.read_csv('final_taylor_swift_lyrics.csv') # read saved dataset
+#lyrics_df = pd.read_csv('final_taylor_swift_lyrics.csv') # read saved dataset
+lyrics_df = pd.read_csv('taylor_lyrics_songs_albumnames.csv') # read saved dataset
+
 
 # Preprocessing: lowercase all text, remove punctuation and special characters, tokenize, remove stopwords
 def preprocess_text(text):
@@ -63,14 +65,20 @@ def process_image(image_file_path):
     #plt.show()
     #print(f"Original generated caption: {caption}")
 
+    
+    formatted_lyric = f"'{lyrics_df.iloc[closest_lyric_index]['lyric']}', from '{lyrics_df.iloc[closest_lyric_index]['song_title']}', from album: {lyrics_df.iloc[closest_lyric_index]['album']}"
+
+
     img_bytes = BytesIO()
     raw_image.save(img_bytes, format='PNG')
     img_bytes = img_bytes.getvalue()
 
     # Encode the image bytes as base64
     img_base64 = base64.b64encode(img_bytes).decode('utf-8')
-
-    return closest_lyric, img_bytes
+    if lyrics_df.iloc[closest_lyric_index]['album'] != "Unreleased Songs" and lyrics_df.iloc[closest_lyric_index]['song_title'] != "Unreleased Songs [Discography List]":
+        return formatted_lyric, img_bytes
+    else:
+        return closest_lyric, img_bytes
 
 
 
