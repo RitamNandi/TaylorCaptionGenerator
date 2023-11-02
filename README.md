@@ -1,5 +1,4 @@
 # Taylor Caption Generator
-AI@UIUC Technical Staff Application second-round open-ended project. 
 
 Upload any image and the web app outputs a Taylor Swift lyric that best captions the photo, includes the song and album if they aren't unreleased 
 
