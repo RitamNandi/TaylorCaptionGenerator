@@ -32,9 +32,9 @@ def upload():
         
         # Call the image processing function from file.py
 
-        closest_lyric, album_name = process_image(filename)
+        closest_lyric, album_name, foundInfo = process_image(filename)
         uploaded_image_url = file.filename
-        return render_template('result.html', closest_lyric=closest_lyric, uploaded_image=uploaded_image_url, album_name=album_name)
+        return render_template('result.html', closest_lyric=closest_lyric, uploaded_image=uploaded_image_url, album_name=album_name, foundInfo = foundInfo)
 
 
 if __name__ == '__main__':

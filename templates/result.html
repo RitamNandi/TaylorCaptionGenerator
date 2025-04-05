@@ -39,7 +39,11 @@
 <body>
     <div class="card">
         <h1>Caption Results</h1>
-        <p>Closest Taylor Swift Lyric Caption: {{ closest_lyric }}</p>
+        {% if foundInfo %}
+            <p>{{ closest_lyric }}</p>
+        {% else %}
+            <p>Closest Taylor Swift Lyric Caption: {{ closest_lyric }}</p>
+        {% endif %}    
     </div>
 
     <script>

@@ -49,9 +49,9 @@ def process_image(image_file_path):
     closest_lyric_index = similarities.argmax()
     closest_lyric = lyrics_df.iloc[closest_lyric_index]['lyric']
 
-    formatted_lyric = f"'{lyrics_df.iloc[closest_lyric_index]['lyric']}' from {lyrics_df.iloc[closest_lyric_index]['song_title']} from album: {lyrics_df.iloc[closest_lyric_index]['album']}"
+    formatted_lyric = f"'{lyrics_df.iloc[closest_lyric_index]['lyric']}' from {lyrics_df.iloc[closest_lyric_index]['song_title']} from album {lyrics_df.iloc[closest_lyric_index]['album']}"
 
     if lyrics_df.iloc[closest_lyric_index]['album'] != "Unreleased Songs" and lyrics_df.iloc[closest_lyric_index]['song_title'] != "Unreleased Songs [Discography List]":
-        return formatted_lyric, lyrics_df.iloc[closest_lyric_index]['album']
+        return formatted_lyric, lyrics_df.iloc[closest_lyric_index]['album'], True
     else:
-        return closest_lyric, lyrics_df.iloc[closest_lyric_index]['album'] # This will say unreleased songs if it isn't one
+        return closest_lyric, lyrics_df.iloc[closest_lyric_index]['album'], False # This will say unreleased songs if it isn't one
