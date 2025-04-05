@@ -1,7 +1,5 @@
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 
 # Imports for preprocessing:
