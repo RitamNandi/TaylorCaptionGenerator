@@ -10,8 +10,6 @@ from nltk.tokenize import word_tokenize
 nltk.download('punkt')
 nltk.download('stopwords')
 
-import base64
-from io import BytesIO
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -51,15 +49,9 @@ def process_image(image_file_path):
     closest_lyric_index = similarities.argmax()
     closest_lyric = lyrics_df.iloc[closest_lyric_index]['lyric']
 
-    formatted_lyric = f"'{lyrics_df.iloc[closest_lyric_index]['lyric']}' from '{lyrics_df.iloc[closest_lyric_index]['song_title']}' from album: {lyrics_df.iloc[closest_lyric_index]['album']}"
+    formatted_lyric = f"'{lyrics_df.iloc[closest_lyric_index]['lyric']}' from {lyrics_df.iloc[closest_lyric_index]['song_title']} from album: {lyrics_df.iloc[closest_lyric_index]['album']}"
 
-    img_bytes = BytesIO()
-    raw_image.save(img_bytes, format='PNG')
-    img_bytes = img_bytes.getvalue()
-
-    # Encode the image bytes as base64
-    img_base64 = base64.b64encode(img_bytes).decode('utf-8')
     if lyrics_df.iloc[closest_lyric_index]['album'] != "Unreleased Songs" and lyrics_df.iloc[closest_lyric_index]['song_title'] != "Unreleased Songs [Discography List]":
-        return formatted_lyric, img_bytes, lyrics_df.iloc[closest_lyric_index]['album']
+        return formatted_lyric, lyrics_df.iloc[closest_lyric_index]['album']
     else:
-        return closest_lyric, img_bytes, lyrics_df.iloc[closest_lyric_index]['album'] # This will say unreleased songs if it isn't one
+        return closest_lyric, lyrics_df.iloc[closest_lyric_index]['album'] # This will say unreleased songs if it isn't one
