@@ -8,20 +8,54 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
+            height: 100vh;
+            background-image: url('{{ url_for("static", filename="taylorswiftperforming.png") }}'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
         }
 
         h1 {
             margin-bottom: 20px;
+            font-family: Calibri, sans-serif;
+        }
+        input[type="file"], input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Upload an Image</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image">
-        <br>
-        <input type="submit" value="Upload">
-    </form>
+    <div class="card">
+        <h1>Upload an Image</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image">
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
 </body>
 </html>
